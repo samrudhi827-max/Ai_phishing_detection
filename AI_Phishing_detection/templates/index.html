@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Phishing Detection System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">🛡️ AI Phishing Detection</div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="#how">How It Works</a>
+            <a href="/about">About</a>
+        </div>
+    </nav>
+
+
+    <main class="hero">
+
+        <div class="hero-content">
+
+            <div class="icon">🔐</div>
+
+            <h1>AI Phishing Detection System</h1>
+
+            <p>
+                Analyze a URL using Machine Learning
+                and identify potentially suspicious characteristics.
+            </p>
+
+
+            <form method="POST" class="url-form">
+
+                <input
+                    type="url"
+                    name="url"
+                    placeholder="https://127.0.0.1:5000"
+                    required
+                >
+
+                <button type="submit">
+                    Analyze URL
+                </button>
+
+            </form>
+
+
+            {% if prediction %}
+
+                {% if prediction == "Likely Legitimate" %}
+
+                    <div class="result safe">
+
+                        <div class="result-icon">✅</div>
+
+                        <h2>Likely Legitimate</h2>
+
+                        <p>
+                            The ML model classified this URL as likely legitimate.
+                        </p>
+
+                    </div>
+                    {% endif %}
+
+                {% else %}
+                
+
+                    <div class="result danger">
+
+                        <div class="result-icon">⚠️</div>
+
+                        <h2>Potentially Phishing</h2>
+
+                        <p>
+                            The ML model classified this URL as potentially phishing.
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+                <div class="analysis">
+
+                    <h2>🔎 URL Analysis</h2>
+
+                    <div class="analysis-grid">
+
+                        <div class="analysis-item">
+                            <span>URL Length</span>
+                            <strong>{{ analysis.url_length }}</strong>
+                        </div>
+
+                        <div class="analysis-item">
+                            <span>Dots</span>
+                            <strong>{{ analysis.dot_count }}</strong>
+                        </div>
+
+                        <div class="analysis-item">
+                            <span>Slashes</span>
+                            <strong>{{ analysis.slash_count }}</strong>
+                        </div>
+
+                        <div class="analysis-item">
+                            <span>Hyphens</span>
+                            <strong>{{ analysis.hyphen_count }}</strong>
+                        </div>
+
+                        <div class="analysis-item">
+                            <span>HTTPS</span>
+
+                            <strong>
+                                {% if analysis.https == 1 %}
+                                    Yes
+                                {% else %}
+                                    No
+                                {% endif %}
+                            </strong>
+
+                        </div>
+
+                        <div class="analysis-item">
+                            <span>Subdomains</span>
+                            <strong>{{ analysis.subdomain_count }}</strong>
+                        </div>
+
+                        <div class="analysis-item">
+                            <span>IP Address</span>
+
+                            <strong>
+                                {% if analysis.has_ip == 1 %}
+                                    Yes
+                                {% else %}
+                                    No
+                                {% endif %}
+                            </strong>
+
+                        </div>
+</div>
+<footer>
+    AI Phishing detection system |
+</footer>
+
+<script src="{{ url_for('static',filename='script.js')}}">
+</script>
+<body>
+</html>

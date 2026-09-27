@@ -1,0 +1,11 @@
+url,label
+https://example.com,legitimate
+https://www.wikipedia.org,legitimate
+https://www.python.org,legitimate
+https://www.github.com,legitimate
+https://www.microsoft.com,legitimate
+http://secure-login-example.com,phishing
+http://account-verify-example.com,phishing
+http://login-confirm-example.com,phishing
+http://update-account-example.com,phishing
+http://verify-user-example.com,phishingss
